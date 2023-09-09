@@ -1,0 +1,14 @@
+<mujocoinclude>
+
+    <body name="arena">
+        <geom mesh="mesh_0" class="visual" conaffinity="1" contype="1" material="Wood" />
+        <geom mesh="mesh_1" class="visual" conaffinity="1" contype="1" material="Wood" />
+        <geom mesh="mesh_2" class="visual" conaffinity="1" contype="1" material="Wood" />
+        <geom mesh="mesh_3" class="visual" conaffinity="1" contype="1" material="Wood" />
+        <geom mesh="mesh_4" class="visual" conaffinity="1" contype="1" material="Wood" />
+        <geom mesh="mesh_5" class="visual" conaffinity="1" contype="1" material="Wood" />
+        <geom mesh="mesh_6" class="visual" conaffinity="1" contype="1" material="Wood" />
+        <geom mesh="mesh_7" class="visual" conaffinity="1" contype="1" material="Wood" />
+        <geom mesh="mesh_8" class="visual" conaffinity="1" contype="1" material="Wood" />
+    </body>
+</mujocoinclude>
