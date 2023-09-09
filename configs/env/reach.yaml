@@ -1,0 +1,5 @@
+defaults:
+  - domain: sim
+  - observ: proprio
+  - task: reach
+  - renderer: offscreen

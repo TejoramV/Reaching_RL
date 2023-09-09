@@ -1,0 +1,29 @@
+algo_name: ppo
+
+num_steps: 6000000    # 384 * 30690
+num_envs: null        # set configs/num_workers
+rollout_length: 30000 # 30690
+
+batch_size: 4096
+train_epochs: 16
+
+mlp_hidden_size: 256
+
+pixel_obs: false
+encoder_lr: 0.0002
+repr_size: 256
+input_dim: [6, 96, 96]
+
+gamma: 0.99
+gae_lambda: 0.95
+
+policy_lr: 0.0003
+value_lr: 0.0003
+
+clip_range: 0.1
+max_ent_coef: 0.01      # entropy maximization (added to reward)
+ent_reg_coef: 0.0       # entropy regularization
+clip_grad_norm: 1.0     # clip gradient norm
+
+eval_freq: null         # set configs/log/eval_interval
+checkpoint_freq: null   # set configs/log/save_interval

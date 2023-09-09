@@ -1,0 +1,4 @@
+has_renderer: false
+has_offscreen_renderer: true
+img_height: 480
+img_width: 640

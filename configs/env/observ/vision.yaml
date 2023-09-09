@@ -1,0 +1,9 @@
+full_state: false
+qpos: false
+ee_pos: false
+sphere_pos: false
+sphere_vel: false
+front_camera: true
+side_camera: true
+flat_obs: true
+normalize_obs: false

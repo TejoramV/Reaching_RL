@@ -1,0 +1,15 @@
+hydra:
+  run:
+    dir: .
+
+defaults:
+  - env: reach
+  - train: reach
+  - log: defaults
+  - wandb: defaults
+
+exp_id: reaching
+
+seed: 0
+gpu_id: 0
+num_workers: 2
