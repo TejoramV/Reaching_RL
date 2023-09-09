@@ -1,0 +1,70 @@
+<!--Copyright 2020 Google LLC-->
+
+<!--Licensed under the Apache License, Version 2.0 (the "License");-->
+<!--you may not use this file except in compliance with the License.-->
+<!--You may obtain a copy of the License at-->
+
+    <!--https://www.apache.org/licenses/LICENSE-2.0-->
+
+<!--Unless required by applicable law or agreed to in writing, software-->
+<!--distributed under the License is distributed on an "AS IS" BASIS,-->
+<!--WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.-->
+<!--See the License for the specific language governing permissions and-->
+<!--limitations under the License.-->
+
+<mujoco model="franka_kitchen">
+
+      <option>
+    <flag multiccd="enable"/>
+  </option>
+    <size njmax='1000' nconmax='1000'/>
+
+    <include file="basic_scene.xml"/>
+    <include file="../franka_assets/franka_assets.xml"/>
+
+    <visual>
+    <global offwidth="2560" offheight="1920" />
+    <quality shadowsize="4096" offsamples="8" />
+    <map force="0.1" fogend="5" />
+    </visual>
+
+    <compiler inertiafromgeom='auto' inertiagrouprange='3 5' angle="radian" texturedir="textures" meshdir="../franka_assets/meshes"/>
+    <worldbody>
+
+        <!-- real cameras -->
+        <camera name="front" fovy="65" pos="1.3420383158842424 -0.037408864541261 0.5281817817238226" quat="0.60670078 0.37513562 0.37637644 0.5912091"/>
+        <camera name="left" fovy="65" pos="0.5663422788968194 0.8021645313506761 0.4900356493435141" quat="0.05478277 0.06033676 0.56395431 0.82177482"/>
+
+        <!-- Robot -->
+        <body pos='0. 0. 0.' euler='0 0 0'>
+            <!-- <geom type='cylinder' size='.120 .90' pos='-.04 0 -0.90'/> -->
+            <include file="../franka_assets/chain.xml"/>
+        </body>
+
+        <body pos="0. 0. 0." name="goal_body">
+            <!-- <inertial mass="0.01" pos="0 0 0" diaginertia="0.05 0.05 0.05" /> -->
+            <!-- <freejoint name="goal_freejoint" /> -->
+            <geom name="goal_geom" conaffinity="3" contype="3" size="0.05" rgba="1 0 0 1" type="sphere" />
+        </body>
+    
+        <!-- franka's reachable workspace -->
+        <!-- low: np.array([0.38, -0.25, 0.15, 0.00]),
+            high: np.array([0.70, 0.28, 0.35, 0.085]), -->
+        <!-- <geom conaffinity="2" contype="2" condim="1" name="reach" pos="0.54 0. 0.215" size="0.16 0.25 0.2" type="box" rgba="0 255 0 0.1"/> -->
+
+    </worldbody>
+    
+    <include file="../franka_assets/actuator.xml"/>
+
+    <keyframe>
+        <!-- <key name="home" ctrl="0.16 -1.76 1.84 -2.51 0.36 0.79 1.55 255"/> -->
+        <!-- <key name="home" ctrl="0. 0.423 0. -1.944 0.013 2.219 0.1 0"/>  -->
+        <!-- <key name="homie" qpos='2.72129e-21 0.555147 -0.000133531 -2.1757 0.0128774 2.73309 0.78219 1.72601e-08 -3.282e-10 0.7 0 0.0499443 1 0 0 0'/> -->
+         <!-- <key name="homie" qpos='6.95554e-21 0.376718 -8.18752e-05 -2.63963 0.0579085 3.03464 0.72425 2.07262e-08 -3.94107e-10 0.6 0 0.0196328 1 0 0 0'/> -->
+
+         <!-- <key qpos='-9.14221e-11 0.00126288 -3.33044e-07 -0.0696243 -2.28697e-05 0.192136 0.000799367 -5.50918e-09 2.91294e-07 0.6 0 0.0196328 1 0 0 0'/> -->
+         <!-- <key qpos='0.02897 0.42312 -0.02897 -2.56163 -0.0581254 3.15 0.81116 -2.01415e-09 1.05925e-07 0.5 0 0.03 1 0 0 0'/> -->
+    
+    </keyframe>
+
+</mujoco>

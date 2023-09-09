@@ -1,0 +1,44 @@
+<!--Copyright 2020 Google LLC-->
+
+<!--Licensed under the Apache License, Version 2.0 (the "License");-->
+<!--you may not use this file except in compliance with the License.-->
+<!--You may obtain a copy of the License at-->
+
+    <!--https://www.apache.org/licenses/LICENSE-2.0-->
+
+<!--Unless required by applicable law or agreed to in writing, software-->
+<!--distributed under the License is distributed on an "AS IS" BASIS,-->
+<!--WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.-->
+<!--See the License for the specific language governing permissions and-->
+<!--limitations under the License.-->
+
+<mujocoinclude>
+    <asset>
+        <texture name="skybox" type="skybox" builtin="gradient" rgb1=".08 .09 .10" rgb2="0 0 0"
+               width="800" height="800" mark="random" markrgb=".8 .8 .8"/>
+        <!-- <texture name="texplane" type="2d" height="1" width="1" file="white_marble_tile2.png" />
+        <material name='MatPlane' reflectance='0.05' texture="texplane" texrepeat="4 4" texuniform="true"/> -->
+        <!-- https://github.com/jakegrigsby/dmc_remastered/tree/main -->
+        <texture name="texplane" type="2d" height="1" width="1" file="grass_grass_0115_01_thumb.png" />
+        <material name='MatPlane' reflectance='0.0' texture="texplane" texrepeat="4 4" texuniform="true"/>
+        <!-- https://www.google.com/url?sa=i&url=https%3A%2F%2Fstock.adobe.com%2Fsearch%3Fk%3Dgolf%2Bball%2Btexture&psig=AOvVaw0fZplKx9QEyEIec7Wjj8UA&ust=1684340316344000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCJioteSe-v4CFQAAAAAdAAAAABAw -->
+        <texture name="golf" file="golfball1.png"/>
+        <material name='golfball' reflectance='0.0' texture="golf"/>
+    </asset>
+
+    <visual>
+        <quality shadowsize="4048"/>
+    </visual>
+
+    <worldbody>
+        <!-- <light directional='true' diffuse='.3 .3 .3' specular='0.3 0.3 0.3' pos='-1 -1 1' dir='1 1 -1'/>
+        <light directional='true' diffuse='.3 .3 .3' specular='0.3 0.3 0.3' pos='1 -1 1' dir='-1 1 -1'/>
+        <light directional='true' diffuse='.3 .3 .3' specular='0.3 0.3 0.3' pos='0 1 1' dir='0 -1 -1'/> -->
+        <!-- <geom name='floor' pos='0 0 0' size='5 5 .1' conaffinity='1' contype='1' type='plane' material="MatPlane" condim='3'/> -->
+        <geom name='floor' friction='0.2 0.001 0.00001' pos='0.55 -0.4 0' size='0.23 0.75 1' conaffinity='1' contype='1' type='plane' material="MatPlane" condim='3'/>
+        <!-- <geom name='floor' pos='0.55 -0.3 0' size='0.26 0.65 1' conaffinity='1' contype='1' type='plane' material="MatPlane" condim='3'/> -->
+        <!-- <geom name='floor1' pos='0.42 -1.05 0' size='0.15 0.1 1' conaffinity='1' contype='1' type='plane' material="MatPlane" condim='3'/> -->
+        <site name='xaxis' pos='.5 0 0' size='.005 .5' type='capsule' rgba='1 0 0 .25' euler='0 1.57 0' group='3'/>
+        <site name='yaxis' pos='0 .5 0' size='.005 .5' type='capsule' rgba='0 1 0 .25' euler='1.57 0 0' group='3'/>
+    </worldbody>
+</mujocoinclude>

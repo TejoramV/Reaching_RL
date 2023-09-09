@@ -1,0 +1,90 @@
+<!--Copyright 2020 Google LLC-->
+
+<!--Licensed under the Apache License, Version 2.0 (the "License");-->
+<!--you may not use this file except in compliance with the License.-->
+<!--You may obtain a copy of the License at-->
+
+    <!--https://www.apache.org/licenses/LICENSE-2.0-->
+
+<!--Unless required by applicable law or agreed to in writing, software-->
+<!--distributed under the License is distributed on an "AS IS" BASIS,-->
+<!--WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.-->
+<!--See the License for the specific language governing permissions and-->
+<!--limitations under the License.-->
+
+<mujoco model="franka_kitchen">
+
+      <option>
+    <flag multiccd="enable"/>
+  </option>
+    <size njmax='1000' nconmax='1000'/>
+
+    <include file="basic_scene.xml"/>
+    <!-- <include file="golf_scene.xml"/> -->
+    <include file="../franka_assets/franka_assets.xml"/>
+    <include file="../recon_assets/arena_assets.xml"/>
+
+    <visual>
+    <global offwidth="2560" offheight="1920" />
+    <quality shadowsize="4096" offsamples="8" />
+    <map force="0.1" fogend="5" />
+    </visual>
+
+    <compiler inertiafromgeom='auto' inertiagrouprange='3 5' angle="radian" texturedir="textures" meshdir="../franka_assets/meshes"/>
+    <worldbody>
+
+        <!-- real cameras -->
+        <camera name="front" fovy="65" pos="1.4066120181297561 -0.27940673557364987 0.5527596897980407" quat="0.6606305  0.46683945 0.33752584 0.48135702"/>
+        <camera name="left" fovy="65" pos="0.5287414307203862 0.9405370611453744 0.5412181712992822" quat="0.01653967 0.00305384 0.59147353 0.80614898"/>
+
+        <!-- Robot -->
+        <body pos='0. 0. 0.' euler='0 0 0'>
+            <!-- <geom type='cylinder' size='.120 .90' pos='-.04 0 -0.90'/> -->
+            <include file="../franka_assets/chain.xml"/>
+        </body>
+
+        <!-- <body pos="0.55 0. 0.03" name="sphere_body"> -->
+        <body pos="0.55 -0.06 0.03" name="sphere_body">
+            <site name="sphere_site" />
+            <inertial mass="0.02" pos="0 0 0" diaginertia="1. 1. 1." />
+            <freejoint name="sphere_freejoint" />
+            <!-- REMOVE ME! conaffinity="1" contype="1" -->
+            <geom name="sphere_geom" conaffinity="1" contype="1" size="0.03" friction='0.2 0.001 0.00001' solref="-1200 -1" rgba="1. 0.1 0.1 1." type="sphere" />
+            <!-- golfball material="golfball" -->
+            <!-- tennisball yellow rgba="0.87 1. 0.31 1." -->
+            <!-- friction="0.7 0.05 0.04" -->
+        </body>
+        
+        <!-- <body pos="0.49 0.45 0.0" name="goal_body"> -->
+        <body pos="0. 0. 0." name="goal_body">
+            <!-- <inertial mass="0.2" pos="0 0 0" diaginertia="0.05 0.05 0.05" /> -->
+            <!-- <freejoint name="goal_freejoint" /> -->
+            <geom name="goal_geom" conaffinity="0" contype="0" size="0.05" rgba="0 1 0 1" type="sphere" />
+        </body>
+
+        <!-- <geom name="goal_geom" conaffinity="3" contype="3" pos="0. 0. 0." size="0.02" rgba="0 1 0 1" type="sphere" /> -->
+
+        <!-- franka's reachable workspace -->
+        <!-- low: np.array([0.38, -0.25, 0.15, 0.00]),
+            high: np.array([0.70, 0.28, 0.35, 0.085]), -->
+        <!-- <geom conaffinity="2" contype="2" condim="1" name="reach" pos="0.54 0. 0.215" size="0.16 0.25 0.2" type="box" rgba="0 255 0 0.1"/> -->
+
+    <include file="../recon_assets/arena.xml"/>
+
+    </worldbody>
+    
+    <include file="../franka_assets/actuator.xml"/>
+
+    <!-- EE starting pos -->
+    <!-- ~0.4, ~0.0, 0.12 -->
+    <!-- valid sphere positions -->
+    <!-- x [0.45,0.65] y [-0.2,0.2] -->
+    <keyframe>
+        <!-- <key qpos='0.02013862 0.50847548 -0.09224909 -2.36841345 0.1598147 2.88097692 0.63428867 0.65 0.2 0.03 1 0 0 0'/> -->
+        <key qpos='0.2369734471447429 0.3957101068087117 -0.14093109223167444 -2.626312519322472 0.3725101566281171 3.0097915809541687 0.5868825081346108 0.65 0.2 0.03 1 0 0 0'/>
+    </keyframe>
+
+</mujoco>
+
+<!-- <key qpos='0.02897 0.44075 -0.05794 -2.56163 0.02897 3.20542 0.78219 -2.01415e-09 1.05925e-07 0.5 0 0.03 1 0 0 0'/>
+<key qpos='0.02897 0.44075 -0.05794 -2.56163 0.02897 3.752 0.78219 -2.01415e-09 1.05925e-07 0.5 0 0.03 1 0 0 0'/> -->
